@@ -1,0 +1,38 @@
+﻿<Application x:Class="WpfApp1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp1"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="Accent" Color="#268C7E"/>
+        <SolidColorBrush x:Key="Soft" Color="#E6F3EF"/>
+        <Style x:Key="MainButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+        <Style x:Key="LightButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Soft}"/>
+            <Setter Property="Foreground" Value="#205B54"/>
+            <Setter Property="BorderBrush" Value="#BCDAD1"/>
+            <Setter Property="Padding" Value="12,7"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+        <Style x:Key="Input" TargetType="TextBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="7,5"/>
+            <Setter Property="Margin" Value="0,3,0,11"/>
+            <Setter Property="BorderBrush" Value="#B5D2CB"/>
+        </Style>
+        <Style x:Key="PasswordInput" TargetType="PasswordBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="7,5"/>
+            <Setter Property="Margin" Value="0,3,0,11"/>
+            <Setter Property="BorderBrush" Value="#B5D2CB"/>
+        </Style>
+    </Application.Resources>
+</Application>

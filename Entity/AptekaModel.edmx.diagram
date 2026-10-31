@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38bba813fc834d63ba764f807dfbb168" Name="Diagram1">
+        <EntityTypeShape EntityType="AptekaModel.Kategorii" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Preparaty" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Prodazhi" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Proizvoditeli" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Role" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.Sotrudniki" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="AptekaModel.User" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="AptekaModel.FK__Preparaty__IdKat__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK__Preparaty__IdPro__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK__Prodazhi__IdPrep__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK__Prodazhi__IdSotr__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK__Users__IdRole__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="AptekaModel.FK__Sotrudnik__IdUse__4CA06362" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

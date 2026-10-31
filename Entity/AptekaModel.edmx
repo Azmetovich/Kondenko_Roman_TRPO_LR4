@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AptekaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kategorii">
+          <Key>
+            <PropertyRef Name="IdKategorii" />
+          </Key>
+          <Property Name="IdKategorii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazvanieKategorii" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Preparaty">
+          <Key>
+            <PropertyRef Name="IdPreparata" />
+          </Key>
+          <Property Name="IdPreparata" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Opisanie" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdProizvoditelya" Type="int" Nullable="false" />
+          <Property Name="IdKategorii" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prodazhi">
+          <Key>
+            <PropertyRef Name="IdProdazhi" />
+          </Key>
+          <Property Name="IdProdazhi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPreparata" Type="int" Nullable="false" />
+          <Property Name="IdSotrudnika" Type="int" Nullable="false" />
+          <Property Name="DataProdazhi" Type="datetime" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" Nullable="false" />
+          <Property Name="CenaProdazhi" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proizvoditeli">
+          <Key>
+            <PropertyRef Name="IdProizvoditelya" />
+          </Key>
+          <Property Name="IdProizvoditelya" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Strana" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="IdSotrudnika" />
+          </Key>
+          <Property Name="IdSotrudnika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familiya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Preparaty__IdKat__4316F928">
+          <End Role="Kategorii" Type="Self.Kategorii" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorii">
+              <PropertyRef Name="IdKategorii" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdKategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Preparaty__IdKat__619B8048">
+          <End Role="Kategorii" Type="Self.Kategorii" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorii">
+              <PropertyRef Name="IdKategorii" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdKategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Preparaty__IdKat__74AE54BC">
+          <End Role="Kategorii" Type="Self.Kategorii" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorii">
+              <PropertyRef Name="IdKategorii" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdKategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Preparaty__IdPro__440B1D61">
+          <End Role="Proizvoditeli" Type="Self.Proizvoditeli" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvoditeli">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Preparaty__IdPro__628FA481">
+          <End Role="Proizvoditeli" Type="Self.Proizvoditeli" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvoditeli">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Preparaty__IdPro__75A278F5">
+          <End Role="Proizvoditeli" Type="Self.Proizvoditeli" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvoditeli">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdPrep__44FF419A">
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Preparaty">
+              <PropertyRef Name="IdPreparata" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdPreparata" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdPrep__6383C8BA">
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Preparaty">
+              <PropertyRef Name="IdPreparata" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdPreparata" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdPrep__76969D2E">
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Preparaty">
+              <PropertyRef Name="IdPreparata" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdPreparata" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdSotr__45F365D3">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="IdSotrudnika" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdSotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdSotr__6477ECF3">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="IdSotrudnika" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdSotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdSotr__778AC167">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="IdSotrudnika" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdSotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__IdUse__46E78A0C">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__IdUse__656C112C">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__IdUse__787EE5A0">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__IdRole__47DBAE45">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__IdRole__66603565">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__IdRole__797309D9">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AptekaModelStoreContainer">
+          <EntitySet Name="Kategorii" EntityType="Self.Kategorii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Preparaty" EntityType="Self.Preparaty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prodazhi" EntityType="Self.Prodazhi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proizvoditeli" EntityType="Self.Proizvoditeli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Preparaty__IdKat__4316F928" Association="Self.FK__Preparaty__IdKat__4316F928">
+            <End Role="Kategorii" EntitySet="Kategorii" />
+            <End Role="Preparaty" EntitySet="Preparaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Preparaty__IdKat__619B8048" Association="Self.FK__Preparaty__IdKat__619B8048">
+            <End Role="Kategorii" EntitySet="Kategorii" />
+            <End Role="Preparaty" EntitySet="Preparaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Preparaty__IdKat__74AE54BC" Association="Self.FK__Preparaty__IdKat__74AE54BC">
+            <End Role="Kategorii" EntitySet="Kategorii" />
+            <End Role="Preparaty" EntitySet="Preparaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Preparaty__IdPro__440B1D61" Association="Self.FK__Preparaty__IdPro__440B1D61">
+            <End Role="Proizvoditeli" EntitySet="Proizvoditeli" />
+            <End Role="Preparaty" EntitySet="Preparaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Preparaty__IdPro__628FA481" Association="Self.FK__Preparaty__IdPro__628FA481">
+            <End Role="Proizvoditeli" EntitySet="Proizvoditeli" />
+            <End Role="Preparaty" EntitySet="Preparaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Preparaty__IdPro__75A278F5" Association="Self.FK__Preparaty__IdPro__75A278F5">
+            <End Role="Proizvoditeli" EntitySet="Proizvoditeli" />
+            <End Role="Preparaty" EntitySet="Preparaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdPrep__44FF419A" Association="Self.FK__Prodazhi__IdPrep__44FF419A">
+            <End Role="Preparaty" EntitySet="Preparaty" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdPrep__6383C8BA" Association="Self.FK__Prodazhi__IdPrep__6383C8BA">
+            <End Role="Preparaty" EntitySet="Preparaty" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdPrep__76969D2E" Association="Self.FK__Prodazhi__IdPrep__76969D2E">
+            <End Role="Preparaty" EntitySet="Preparaty" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdSotr__45F365D3" Association="Self.FK__Prodazhi__IdSotr__45F365D3">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdSotr__6477ECF3" Association="Self.FK__Prodazhi__IdSotr__6477ECF3">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdSotr__778AC167" Association="Self.FK__Prodazhi__IdSotr__778AC167">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__IdUse__46E78A0C" Association="Self.FK__Sotrudnik__IdUse__46E78A0C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__IdUse__656C112C" Association="Self.FK__Sotrudnik__IdUse__656C112C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__IdUse__787EE5A0" Association="Self.FK__Sotrudnik__IdUse__787EE5A0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__IdRole__47DBAE45" Association="Self.FK__Users__IdRole__47DBAE45">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__IdRole__66603565" Association="Self.FK__Users__IdRole__66603565">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__IdRole__797309D9" Association="Self.FK__Users__IdRole__797309D9">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AptekaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kategorii">
+          <Key>
+            <PropertyRef Name="IdKategorii" />
+          </Key>
+          <Property Name="IdKategorii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazvanieKategorii" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Preparaties" Relationship="Self.FK__Preparaty__IdKat__2B3F6F97" FromRole="Kategorii" ToRole="Preparaty" />
+        </EntityType>
+        <EntityType Name="Preparaty">
+          <Key>
+            <PropertyRef Name="IdPreparata" />
+          </Key>
+          <Property Name="IdPreparata" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opisanie" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cena" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdProizvoditelya" Type="Int32" Nullable="false" />
+          <Property Name="IdKategorii" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kategorii" Relationship="Self.FK__Preparaty__IdKat__2B3F6F97" FromRole="Preparaty" ToRole="Kategorii" />
+          <NavigationProperty Name="Proizvoditeli" Relationship="Self.FK__Preparaty__IdPro__2A4B4B5E" FromRole="Preparaty" ToRole="Proizvoditeli" />
+          <NavigationProperty Name="Prodazhis" Relationship="Self.FK__Prodazhi__IdPrep__2E1BDC42" FromRole="Preparaty" ToRole="Prodazhi" />
+        </EntityType>
+        <EntityType Name="Prodazhi">
+          <Key>
+            <PropertyRef Name="IdProdazhi" />
+          </Key>
+          <Property Name="IdProdazhi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPreparata" Type="Int32" Nullable="false" />
+          <Property Name="IdSotrudnika" Type="Int32" Nullable="false" />
+          <Property Name="DataProdazhi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Kolichestvo" Type="Int32" Nullable="false" />
+          <Property Name="CenaProdazhi" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Preparaty" Relationship="Self.FK__Prodazhi__IdPrep__2E1BDC42" FromRole="Prodazhi" ToRole="Preparaty" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK__Prodazhi__IdSotr__2F10007B" FromRole="Prodazhi" ToRole="Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Proizvoditeli">
+          <Key>
+            <PropertyRef Name="IdProizvoditelya" />
+          </Key>
+          <Property Name="IdProizvoditelya" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Strana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Preparaties" Relationship="Self.FK__Preparaty__IdPro__2A4B4B5E" FromRole="Proizvoditeli" ToRole="Preparaty" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__IdRole__4BAC3F29" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="IdSotrudnika" />
+          </Key>
+          <Property Name="IdSotrudnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" />
+          <NavigationProperty Name="Prodazhis" Relationship="Self.FK__Prodazhi__IdSotr__2F10007B" FromRole="Sotrudniki" ToRole="Prodazhi" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Sotrudnik__IdUse__4CA06362" FromRole="Sotrudniki" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Users__IdRole__4BAC3F29" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Sotrudnikis" Relationship="Self.FK__Sotrudnik__IdUse__4CA06362" FromRole="Users" ToRole="Sotrudniki" />
+        </EntityType>
+        <Association Name="FK__Preparaty__IdKat__2B3F6F97">
+          <End Role="Kategorii" Type="Self.Kategorii" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorii">
+              <PropertyRef Name="IdKategorii" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdKategorii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Preparaty__IdPro__2A4B4B5E">
+          <End Role="Proizvoditeli" Type="Self.Proizvoditeli" Multiplicity="1" />
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvoditeli">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Principal>
+            <Dependent Role="Preparaty">
+              <PropertyRef Name="IdProizvoditelya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdPrep__2E1BDC42">
+          <End Role="Preparaty" Type="Self.Preparaty" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Preparaty">
+              <PropertyRef Name="IdPreparata" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdPreparata" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodazhi__IdSotr__2F10007B">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="IdSotrudnika" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IdSotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__IdRole__4BAC3F29">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__IdUse__4CA06362">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AptekaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kategoriis" EntityType="Self.Kategorii" />
+          <EntitySet Name="Preparaties" EntityType="Self.Preparaty" />
+          <EntitySet Name="Prodazhis" EntityType="Self.Prodazhi" />
+          <EntitySet Name="Proizvoditelis" EntityType="Self.Proizvoditeli" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sotrudnikis" EntityType="Self.Sotrudniki" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Preparaty__IdKat__2B3F6F97" Association="Self.FK__Preparaty__IdKat__2B3F6F97">
+            <End Role="Kategorii" EntitySet="Kategoriis" />
+            <End Role="Preparaty" EntitySet="Preparaties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Preparaty__IdPro__2A4B4B5E" Association="Self.FK__Preparaty__IdPro__2A4B4B5E">
+            <End Role="Proizvoditeli" EntitySet="Proizvoditelis" />
+            <End Role="Preparaty" EntitySet="Preparaties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdPrep__2E1BDC42" Association="Self.FK__Prodazhi__IdPrep__2E1BDC42">
+            <End Role="Preparaty" EntitySet="Preparaties" />
+            <End Role="Prodazhi" EntitySet="Prodazhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodazhi__IdSotr__2F10007B" Association="Self.FK__Prodazhi__IdSotr__2F10007B">
+            <End Role="Sotrudniki" EntitySet="Sotrudnikis" />
+            <End Role="Prodazhi" EntitySet="Prodazhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__IdRole__4BAC3F29" Association="Self.FK__Users__IdRole__4BAC3F29">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__IdUse__4CA06362" Association="Self.FK__Sotrudnik__IdUse__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sotrudniki" EntitySet="Sotrudnikis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AptekaModelStoreContainer" CdmEntityContainer="AptekaEntities">
+          <EntitySetMapping Name="Kategoriis">
+            <EntityTypeMapping TypeName="AptekaModel.Kategorii">
+              <MappingFragment StoreEntitySet="Kategorii">
+                <ScalarProperty Name="IdKategorii" ColumnName="IdKategorii" />
+                <ScalarProperty Name="NazvanieKategorii" ColumnName="NazvanieKategorii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Preparaties">
+            <EntityTypeMapping TypeName="AptekaModel.Preparaty">
+              <MappingFragment StoreEntitySet="Preparaty">
+                <ScalarProperty Name="IdPreparata" ColumnName="IdPreparata" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="Opisanie" ColumnName="Opisanie" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="IdProizvoditelya" ColumnName="IdProizvoditelya" />
+                <ScalarProperty Name="IdKategorii" ColumnName="IdKategorii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prodazhis">
+            <EntityTypeMapping TypeName="AptekaModel.Prodazhi">
+              <MappingFragment StoreEntitySet="Prodazhi">
+                <ScalarProperty Name="IdProdazhi" ColumnName="IdProdazhi" />
+                <ScalarProperty Name="IdPreparata" ColumnName="IdPreparata" />
+                <ScalarProperty Name="IdSotrudnika" ColumnName="IdSotrudnika" />
+                <ScalarProperty Name="DataProdazhi" ColumnName="DataProdazhi" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+                <ScalarProperty Name="CenaProdazhi" ColumnName="CenaProdazhi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proizvoditelis">
+            <EntityTypeMapping TypeName="AptekaModel.Proizvoditeli">
+              <MappingFragment StoreEntitySet="Proizvoditeli">
+                <ScalarProperty Name="IdProizvoditelya" ColumnName="IdProizvoditelya" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="Strana" ColumnName="Strana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="AptekaModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnikis">
+            <EntityTypeMapping TypeName="AptekaModel.Sotrudniki">
+              <MappingFragment StoreEntitySet="Sotrudniki">
+                <ScalarProperty Name="IdSotrudnika" ColumnName="IdSotrudnika" />
+                <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AptekaModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
